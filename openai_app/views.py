@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 openai.api_key = os.path.join(os.environ.get('OPENAI_API_KEY'))
+from django.views.decorators.clickjacking import xframe_options_exempt
 
+@xframe_options_exempt
 def chat(request):
     chat_history = request.session.get('chat_history', [])
     request.session['chat_history'] = chat_history
