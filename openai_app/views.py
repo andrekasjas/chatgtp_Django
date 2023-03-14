@@ -2,13 +2,11 @@ from django.shortcuts import render
 import openai
 import os
 from dotenv import load_dotenv
-
+from django.views.decorators.clickjacking import xframe_options_exempt
 load_dotenv()
 
-openai.api_key = os.path.join(os.environ.get('OPENAI_API_KEY'))
-from django.views.decorators.clickjacking import xframe_options_exempt
-
 @xframe_options_exempt
+openai.api_key = os.path.join(os.environ.get('OPENAI_API_KEY'))
 def chat(request):
     chat_history = request.session.get('chat_history', [])
     request.session['chat_history'] = chat_history
