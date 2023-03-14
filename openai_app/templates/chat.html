@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .card {
+    background: rgb(127, 183, 235);
+    -webkit-box-shadow: 10px 0px 5px 0px rgb(48, 2, 2);
+    -moz-box-shadow: 10px 0px 5px 0px rgb(48, 2, 2);
+    box-shadow: 10px 0px 5px 0px rgb(48, 2, 2);
+    border-radius: 5px 5px 0 0;
+    height: 74vh;
+    overflow-y: scroll;
+    border: none;
+  }
+
+  /* Estilo de la barra de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho de la barra */
+  }
+
+  /* Estilo de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Color de fondo de la barra */
+    border-radius: 4px 4px 0 0;
+    /* Borde redondeado */
+  }
+
+  /* Oculta la barra de desplazamiento horizontal */
+  ::-webkit-scrollbar-horizontal {
+    display: none;
+  }
+
+  /* Estilo del contenedor */
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 0;
+
+  }
+
+  /* Estilo del input */
+  .chat-input {
+    border: none;
+    border-radius: 0 0 5px 5px;
+    padding: 10px 60px 10px 20px;
+    width: 100%;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: rgb(127, 183, 235);
+    color: #333;
+    -webkit-box-shadow: 8px 0px 5px 3px rgb(48, 2, 2);
+    -moz-box-shadow: 8px 0px 5px 3px rgb(48, 2, 2);
+    box-shadow: 8px 0px 5px 3px rgb(48, 2, 2);
+  }
+
+  /* Estilo del botón */
+  .send-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .send-button i {
+    font-size: 24px;
+    color: #333;
+  }
+
+  /* Estilo del botón al pasar el mouse sobre él */
+  .send-button:hover {
+    opacity: 0.7;
+  }
+</style>
+<div class="container mt-5 cards">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body" id="message-container">
+          <div class="message my-3" style="padding-right: 50px;">
+            <div class="message-body bg-secondary text-white py-2 px-3" style="border-radius: 0 5px 5px 0;">
+              <p class="mb-0">Hola! ¿En qué puedo ayudarte? Estoy a tu disposición para responder preguntas o ayudarte
+                en lo que necesites.</p>
+            </div>
+          </div>
+          {% for message in chat_history %}
+          <div class="message my-3" style="padding-left: 50px;">
+            <div class="message-body bg-success text-white py-2 px-3" style="border-radius: 5px 0 0 5px;">
+              <p class="mb-0">{{ message.user }}</p>
+            </div>
+          </div>
+          <div class="message my-3" style="padding-right: 50px;">
+            <div class="message-body bg-secondary text-white py-2 px-3" style="border-radius: 0 5px 5px 0;">
+              <p class="mb-0">{{ message.bot }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <form method="POST" action="{% url 'chat' %}">
+        {% csrf_token %}
+        <div class="input-container">
+          <input type="text" placeholder="Escribe un mensaje..." class="chat-input" id="message" name="message"
+            required>
+          <button class="send-button" type="submit"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </form>
+      <form method="POST" action="{% url 'chat' %}">
+        {% csrf_token %}
+        <input type="hidden" name="vacia" value="vacia">
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-secondary btn-block mt-2">Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  const contenedor = document.querySelector('.card');
+  contenedor.scrollTop = contenedor.scrollHeight - contenedor.clientHeight;
+
+</script>
+{% endblock %}
