@@ -5,11 +5,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Inteligente{% endblock %}</title>
+  <title>{% block title %}Chat IA{% endblock %}</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+<link rel="icon" href="data:image/jpeg;base64,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" type="image/x-icon">
+  <!-- Estilos CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-..." crossorigin="anonymous">
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  
+  <!-- Incluir archivos JavaScript de Owl Carousel y jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+</head>
+<style>
+  body {
+    background-color: #0c1f3f;
+    background-image: linear-gradient(to bottom, #0c1f3f, #2b5797);
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png"), linear-gradient(to bottom, #0c1f3f, #2b5797);
+  }
+</style>
+<body>
+  <style>
+    .scroll-top {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      z-index: 99;
+      display: none;
+    }
+    
+    .scroll-bottom {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        display: none;
+    }  
+    li.active {
+      background-color: #ccc!important;
+    }
+    
+    li.active a {
+      color: #fff!important;
+    }
+  </style>
+  <a href="#" class="btn btn-primary scroll-top"><i class="fas fa-angle-double-up"></i></a>
+  <a href="#" class="btn btn-primary scroll-bottom"><i class="fas fa-angle-double-down"></i></a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Peliculas</a>
+      <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item  {% if request.path|slice:':5' == '/    ' %}active{% endif %}">
+            <a class="nav-link  {% if request.path|slice:':5' == '/    ' %}active{% endif %}" href="{% url 'lista_peliculas'%}">Inicio</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mb-5">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Scripts JS de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.scroll-top').fadeIn();
+            } else {
+                $('.scroll-top').fadeOut();
+            }
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                $('.scroll-bottom').fadeOut();
+            } else {
+                $('.scroll-bottom').fadeIn();
+            }
+        });
+    
+        $('.scroll-top').click(function() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 1000);
+            return false;
+        });
+    
+        $('.scroll-bottom').click(function() {
+            $('html, body').animate({
+                scrollTop: $(document).height()
+            }, 1000);
+            return false;
+        });
+    });  
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel({
+        nav: true, // mostrar flechas de navegación
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"], // texto de las flechas
+        dots: false, // mostrar puntos de navegación
+        loop: true, // repetir el carrusel
+        margin: 10, // margen entre los items
+        responsive: { // configuración responsiva
+          0: {
+            items: 1
+          },
+          600: {
+            items: 3
+          },
+          1000: {
+            items: 5
+          }
+        }
+      });
+    });    
+  </script>
+  <script>
+    $(document).ready(function(){
+      $(".owl-carousel-2").owlCarousel({
+        nav: true, // mostrar flechas de navegación
+        navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"], // texto de las flechas
+        dots: false, // mostrar puntos de navegación
+        loop: true, // repetir el carrusel
+        margin: 10, // margen entre los items
+        responsive: { // configuración responsiva
+          0: {
+            items: 1
+          },
+          600: {
+            items: 3
+          },
+          1000: {
+            items: 5
+          }
+        }
+      });
+    });    
+  </script>
+</body>
+</html>
 
   <!-- Estilos CSS de Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-..." crossorigin="anonymous">
@@ -50,7 +197,7 @@
   <a href="#" class="btn btn-primary scroll-bottom"><i class="fas fa-angle-double-down"></i></a>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">Inteligente</a>
+      <a class="navbar-brand" href="/">Chat</a>
       <button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
