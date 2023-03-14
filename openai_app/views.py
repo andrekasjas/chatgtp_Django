@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import openai
 import os
 from dotenv import load_dotenv
@@ -14,6 +14,7 @@ def chat(request):
         vacia = request.POST.get('vacia')
         if vacia:
             request.session['chat_history'] = []
+            return redirect(request.path_info)
         if message:
             chat_history.append({'user': message, 'bot': ''})
 
